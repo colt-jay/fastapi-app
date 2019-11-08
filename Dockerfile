@@ -1,3 +1,6 @@
+# Staged images are used to limit the size of the final image given that
+# g/uvicorn require compilers to build.
+
 # Builder Image (~300MB)
 FROM    python:3-alpine as builder
 RUN     apk add build-base
@@ -11,10 +14,9 @@ FROM    python:3-alpine
 LABEL   maintainer="colton.chapin@gmail.com"
 
 COPY    --from=builder /install /usr/local
-
 COPY    requirements.txt /requirements.txt
 RUN     pip install --upgrade pip setuptools
-RUN     pip install -r requirements.txt
+RUN     pip install --no-cache-dir -r requirements.txt
 
 ADD     . /src
 WORKDIR /src
@@ -23,4 +25,3 @@ EXPOSE  5000
 ENTRYPOINT ["gunicorn", "entrypoint:app", "-b", ":5000", \
     "--worker-class", "uvicorn.workers.UvicornH11Worker", \
     "--config", "wsgi/gunicorn.conf"]
-#    "--log-config", "wsgi/logging.conf"]
