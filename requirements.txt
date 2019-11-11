@@ -2,3 +2,4 @@
 fastapi==0.42.0
 uvicorn==0.10.3
 gunicorn==19.9.0
+Celery==4.3.0

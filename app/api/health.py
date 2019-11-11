@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
-api_health = APIRouter()
+router = APIRouter()
 
 
-@api_health.get('/')
+@router.get('/')
 def liveliness_check() -> dict:
     return {'message': 'App is live!'}
