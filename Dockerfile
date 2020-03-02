@@ -18,8 +18,8 @@ COPY    requirements.txt /requirements.txt
 RUN     pip install --upgrade pip setuptools
 RUN     pip install --no-cache-dir -r requirements.txt
 
-ADD     . /src
-WORKDIR /src
+ADD     . /code
+WORKDIR /code
 
 EXPOSE  5000
 ENTRYPOINT ["gunicorn", "entrypoint:app", "-b", ":5000", \

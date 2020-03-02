@@ -1,4 +1,3 @@
-venv/
-ops/
+.venv/
 env/
 tests/
