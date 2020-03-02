@@ -12,6 +12,12 @@ You may then configure PyCharm with the generated `.venv` directory or use the P
 poetry shell
 ```
 
+# Running Server
+## Localy
+```bash
+make docker-run
+```
+
 # Tests
 ```bash
 pytest tests/
